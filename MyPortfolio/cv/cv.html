@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Elavazhagan S. — CV</title>
+<style>
+  /* ═══════════ RESET & PAGE SETUP ═══════════ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a202c;
+    --ink-soft: #4a5568;
+    --ink-muted: #718096;
+    --accent: #4338ca;
+    --accent-soft: #eef2ff;
+    --sidebar: #f7f8fb;
+    --line: #e2e8f0;
+    --serif: 'Times New Roman', Times, serif;
+    --sans: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: #e5e7eb;
+    line-height: 1.35;
+    font-size: 9pt;
+  }
+
+  /* Fixed A4 page — forces single page */
+  .page {
+    width: 210mm;
+    height: 296mm;
+    margin: 8mm auto;
+    background: #ffffff;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    display: grid;
+    grid-template-columns: 1fr 64mm;
+    overflow: hidden;
+  }
+
+  /* ═══════════ HEADER ═══════════ */
+  header {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+    color: #ffffff;
+    padding: 6mm 9mm 5mm 9mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6mm;
+  }
+
+  .header-name h1 {
+    font-family: var(--serif);
+    font-size: 20pt;
+    letter-spacing: 0.5px;
+    margin-bottom: 1mm;
+  }
+
+  .header-name .role {
+    font-size: 9.5pt;
+    color: #c7d2fe;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    margin-bottom: 1.5mm;
+  }
+
+  .header-name .tagline {
+    font-size: 7.8pt;
+    color: #a5b4fc;
+    max-width: 105mm;
+  }
+
+  .header-contact {
+    text-align: right;
+    font-size: 7.5pt;
+    color: #e0e7ff;
+    line-height: 1.8;
+    white-space: nowrap;
+  }
+
+  .header-contact b { color: #ffffff; font-weight: 600; }
+
+  /* Clickable links in header */
+  .header-contact a {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    transition: border-color 0.2s;
+  }
+
+  .header-contact a:hover {
+    border-color: #ffffff;
+  }
+
+  /* ═══════════ MAIN COLUMN ═══════════ */
+  main { padding: 5mm 6mm 6mm 9mm; }
+
+  .section { margin-bottom: 4mm; }
+
+  .section-title {
+    font-size: 9.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    color: var(--accent);
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 1mm;
+    margin-bottom: 2.5mm;
+  }
+
+  .summary {
+    font-size: 8.6pt;
+    color: var(--ink-soft);
+    text-align: justify;
+  }
+
+  .entry { margin-bottom: 3mm; page-break-inside: avoid; }
+
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4mm;
+  }
+
+  .entry-title { font-size: 9.5pt; font-weight: 700; color: var(--ink); }
+
+  .entry-date {
+    font-size: 7.3pt;
+    color: var(--accent);
+    font-weight: 700;
+    white-space: nowrap;
+    background: var(--accent-soft);
+    padding: 0.4mm 2.2mm;
+    border-radius: 3mm;
+  }
+
+  .entry-org {
+    font-size: 8.2pt;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin: 0.5mm 0 1mm 0;
+  }
+
+  .entry ul { padding-left: 4.5mm; }
+
+  .entry li {
+    font-size: 8.4pt;
+    color: var(--ink-soft);
+    margin-bottom: 0.6mm;
+  }
+
+  .entry li::marker { color: var(--accent); }
+
+  .tech-line {
+    margin-top: 0.8mm;
+    font-size: 7.6pt;
+    color: var(--ink-muted);
+  }
+
+  .tech-line b { color: var(--accent); font-weight: 700; }
+
+  /* Bottom two-column row (fills space below projects) */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm;
+    margin-top: 4mm;
+  }
+
+  .bottom-grid .section { margin-bottom: 0; }
+
+  .edu-item { margin-bottom: 2.2mm; }
+  .edu-item h4 { font-size: 8.8pt; color: var(--ink); }
+  .edu-item .edu-org { font-size: 7.6pt; color: var(--ink-muted); margin: 0.3mm 0; }
+  .edu-item .edu-meta { font-size: 7.6pt; color: var(--accent); font-weight: 700; }
+
+  .achieve li {
+    font-size: 8pt;
+    color: var(--ink-soft);
+    margin-bottom: 1.4mm;
+    padding-left: 3.5mm;
+    position: relative;
+  }
+
+  .achieve li::before {
+    content: "★";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 7pt;
+  }
+
+  /* ═══════════ SIDEBAR ═══════════ */
+  aside {
+    background: var(--sidebar);
+    border-left: 1px solid var(--line);
+    padding: 5mm 5mm 6mm 5mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .side-section { margin-bottom: 3.5mm; }
+
+  .side-title {
+    font-size: 8.8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    color: var(--accent);
+    margin-bottom: 2mm;
+    padding-bottom: 1mm;
+    border-bottom: 1.2px solid var(--line);
+  }
+
+  /* Skill bars */
+  .skill { margin-bottom: 1.7mm; }
+
+  .skill-name {
+    font-size: 7.8pt;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 0.6mm;
+  }
+
+  .bar {
+    height: 1.3mm;
+    background: #e2e8f0;
+    border-radius: 2mm;
+    overflow: hidden;
+  }
+
+  .bar i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #4338ca, #6366f1);
+    border-radius: 2mm;
+  }
+
+  /* Chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 1.2mm; }
+
+  .chip {
+    font-size: 7.1pt;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    padding: 0.7mm 2.2mm;
+    border-radius: 3mm;
+  }
+
+  /* Certifications */
+  .cert-item { margin-bottom: 1.8mm; }
+  .cert-item h4 { font-size: 8pt; color: var(--ink); line-height: 1.25; }
+  .cert-item p { font-size: 7.1pt; color: var(--ink-muted); }
+  .cert-item .cert-badge { color: var(--accent); font-weight: 700; }
+
+  /* Languages */
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: var(--ink-soft);
+    margin-bottom: 1.2mm;
+  }
+
+  .lang-item b { color: var(--ink); font-weight: 700; }
+
+  /* Push last sidebar section down to balance columns */
+  .side-spacer { margin-top: auto; }
+
+  /* ═══════════ PRINT RULES ═══════════ */
+  @page { size: A4; margin: 0; }
+
+  @media print {
+    body { background: none; }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      width: 210mm;
+      height: 296mm;
+    }
+    .header-contact a { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header>
+    <div class="header-name">
+      <h1>ELAVAZHAGAN S.</h1>
+      <div class="role">Java Full Stack Developer</div>
+      <div class="tagline">
+        MCA student building scalable web applications with Java, Spring Boot,
+        MySQL & modern frontend technologies.
+      </div>
+    </div>
+    <div class="header-contact">
+      📍 Tiruchirappalli, Tamil Nadu, India<br>
+      ✉️ <b>elavazhagan8603@gmail.com</b> <!-- ✏️ EDIT: your email -->
+      <br>📞 <b>+91 9080084727</b> <!-- ✏️ EDIT: your phone -->
+      <br>🔗 <a href="https://www.linkedin.com/in/elavazhagan-s-06aa7931b" target="_blank">linkedin.com/in/elavazhagan-s-06aa7931b</a>
+      <br>💻 <a href="https://github.com/" target="_blank">github.com/elavazhagan8603-ux</a> <!-- ✏️ EDIT: add your username after github.com/ -->
+    </div>
+  </header>
+
+  <!-- ══════════ MAIN COLUMN ══════════ -->
+  <main>
+
+    <!-- SUMMARY -->
+    <div class="section">
+      <div class="section-title">Professional Summary</div>
+      <p class="summary">
+        MCA student at St. Joseph's College (Autonomous), Trichy, with 10 months of
+        full-stack training at T4TEQ Software Solutions. Skilled in Java, Spring Boot,
+        MySQL and frontend development; experienced in building and deploying end-to-end
+        web apps — including a live cab booking system on Render.com with TiDB Cloud.
+        Open to internships and software development roles.
+      </p>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+      <div class="section-title">Internship Experience</div>
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-title">Java Full Stack Trainee</span>
+          <span class="entry-date">Aug 2025 – Jun 2026</span>
+        </div>
+        <div class="entry-org">T4TEQ Software Solutions · Kattur, Trichy (On-site)</div>
+        <ul>
+          <li>Developed the <b>City Cab Online Booking Website</b> end-to-end using Java, Spring Boot, HTML/CSS/JS & Bootstrap.</li>
+          <li>Designed MySQL / TiDB Cloud databases with user authentication, role management & REST API integration.</li>
+          <li>Deployed and hosted the application on <b>Render.com</b> with secure TLS/SSL cloud connectivity.</li>
+          <li>Practised Git/GitHub version control, testing, debugging, documentation & agile teamwork.</li>
+        </ul>
+        <div class="tech-line"><b>Stack:</b> Java · Spring Boot · JSP/Servlet · REST APIs · MySQL · TiDB Cloud · Bootstrap · Git</div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section">
+      <div class="section-title">Projects</div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-title">City Cab Online Booking System</span>
+          <span class="entry-date">2026</span>
+        </div>
+        <ul>
+          <li>Full-stack booking platform with auth & ride management; live on Render.com + TiDB Cloud.</li>
+        </ul>
+        <div class="tech-line"><b>Tech:</b> Java · Spring Boot · MySQL · TiDB Cloud · Bootstrap</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-title">Car Parking Management System</span>
+          <span class="entry-date">2026</span>
+        </div>
+        <ul>
+          <li>Vehicle entry/exit tracking, slot allocation & monitoring with JDBC database records.</li>
+        </ul>
+        <div class="tech-line"><b>Tech:</b> Java · JDBC · MySQL</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-title">School Admission Portal</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <ul>
+          <li>Validated admission forms, session-storage data management, edit/update & responsive tables.</li>
+        </ul>
+        <div class="tech-line"><b>Tech:</b> HTML · CSS · JavaScript · Bootstrap</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-title">Farmer Direct Selling Platform</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <ul>
+          <li>Farmer-to-customer marketplace removing retailer intervention; product listing & communication.</li>
+        </ul>
+        <div class="tech-line"><b>Tech:</b> Java · MySQL · HTML · CSS · JavaScript</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-title">Fake Money Detection — "Third Eye of Indian Currency"</span>
+          <span class="entry-date">2026</span>
+        </div>
+        <ul>
+          <li>Innovation pitch presented at national-level <b>Pitch Fest 2026</b>, St. Joseph's College.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom two-column row: fills space below projects -->
+    <div class="bottom-grid">
+      <div class="section">
+        <div class="section-title">Education</div>
+        <div class="edu-item">
+          <h4>Master of Computer Applications</h4>
+          <div class="edu-org">St. Joseph's College (Autonomous), Trichy</div>
+          <div class="edu-meta">2025 – 2027 · Pursuing</div>
+        </div>
+        <div class="edu-item">
+          <h4>B.Sc. Computer Science</h4>
+          <div class="edu-org">Bishop Heber College</div>
+          <div class="edu-meta">2022 – 2025 · CGPA 7.22 / 10</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Achievements</div>
+        <ul class="achieve">
+          <li>Presented at <b>Pitch Fest 2026</b>, a national-level innovation challenge.</li>
+          <li>Deployed a live full-stack application on Render.com with TiDB Cloud.</li>
+          <li>NPTEL <b>Elite</b> certification with 73% consolidated score.</li>
+          <li><b>First Class Distinction</b> in Junior Grade English Typewriting.</li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══════════ SIDEBAR ══════════ -->
+  <aside>
+
+    <!-- SKILLS -->
+    <div class="side-section">
+      <div class="side-title">Technical Skills</div>
+      <div class="skill"><div class="skill-name">Core Java / OOP</div><div class="bar"><i style="width:90%"></i></div></div>
+      <div class="skill"><div class="skill-name">Spring Boot</div><div class="bar"><i style="width:85%"></i></div></div>
+      <div class="skill"><div class="skill-name">MySQL / JDBC</div><div class="bar"><i style="width:85%"></i></div></div>
+      <div class="skill"><div class="skill-name">HTML / CSS</div><div class="bar"><i style="width:90%"></i></div></div>
+      <div class="skill"><div class="skill-name">JavaScript</div><div class="bar"><i style="width:80%"></i></div></div>
+      <div class="skill"><div class="skill-name">Bootstrap</div><div class="bar"><i style="width:85%"></i></div></div>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="side-section">
+      <div class="side-title">Tools & Cloud</div>
+      <div class="chips">
+        <span class="chip">Git & GitHub</span>
+        <span class="chip">VS Code</span>
+        <span class="chip">Render.com</span>
+        <span class="chip">TiDB Cloud</span>
+        <span class="chip">REST APIs</span>
+        <span class="chip">JSP/Servlet</span>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="side-section">
+      <div class="side-title">Certifications</div>
+      <div class="cert-item"><h4>Java Full Stack Development</h4><p>T4TEQ · 4 Months · 2026</p></div>
+      <div class="cert-item"><h4>Backend Development with Spring Boot</h4><p>T4TEQ · 2 Months · 2026</p></div>
+      <div class="cert-item"><h4>Database Development with MySQL</h4><p>T4TEQ · 2 Months · 2026</p></div>
+      <div class="cert-item"><h4>Java Programming – Core</h4><p>T4TEQ · 2 Months · 2026</p></div>
+      <div class="cert-item"><h4>Front End Web Development</h4><p>T4TEQ · 2 Months · 2025</p></div>
+      <div class="cert-item"><h4>Soft Skill Development <span class="cert-badge">· Elite 73%</span></h4><p>NPTEL · IIT Kharagpur (SWAYAM)</p></div>
+      <div class="cert-item"><h4>Typewriting <span class="cert-badge">· 1st Class Distinction</span></h4><p>SSS Technical Institute</p></div>
+    </div>
+
+    <!-- SOFT SKILLS -->
+    <div class="side-section">
+      <div class="side-title">Soft Skills</div>
+      <div class="chips">
+        <span class="chip">Communication</span>
+        <span class="chip">Teamwork</span>
+        <span class="chip">Problem Solving</span>
+        <span class="chip">Presentation</span>
+        <span class="chip">Time Management</span>
+      </div>
+    </div>
+
+    <!-- LANGUAGES KNOWN -->
+    <div class="side-section side-spacer">
+      <div class="side-title">Languages Known</div>
+      <div class="lang-item"><b>Tamil</b><span>Native</span></div>
+      <div class="lang-item"><b>English</b><span>Professional</span></div>
+    </div>
+
+  </aside>
+</div>
+
+</body>
+</html>
