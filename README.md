@@ -12,7 +12,7 @@ Welcome to the official developer portfolio repository of **Elavazhagan S.**, an
 
 ## 🚀 Key Highlights & Architectural Features
 
-- **Dynamic Interactive Terminal**: In-browser CLI shell supporting commands like `help`, `curl /api/developer`, `skills`, `projects`, `contact`, and `download-cv` (with `Ctrl+K` shortcut).
+- **Dynamic Role Animation & Hero Showcase**: High-impact introduction with 3D tilt profile card, floating tech chips, and responsive specialization typing loop.
 - **Responsive Canvas Particle Network**: Lightweight HTML5 canvas constellation reacting smoothly to mouse physics and device orientation.
 - **Dynamic Accent Theme Switcher**: 4 tailored color palettes (**Violet Nebula**, **Cyber Cyan**, **Matrix Emerald**, **Sunset Amber**).
 - **Featured Bento Projects Showcase**: Architectural breakdown and modal deep-dives for live applications (including City Cab Booking System hosted on Render with TiDB Cloud).
